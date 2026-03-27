@@ -167,3 +167,17 @@ p { @apply text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
+
+/* Keyboard focus styles */
+*:focus-visible {
+  outline: 2px solid #14B8A6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #14B8A6;
+  outline-offset: 2px;
+}

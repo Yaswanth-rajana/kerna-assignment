@@ -49,7 +49,7 @@ export default function Services() {
                     return <Icon className="w-6 h-6 stroke-[2.2]" />;
                   })()}
                 </div>
-                <h3 className={`mb-3 ${index === SERVICES.length - 1 ? 'whitespace-nowrap text-lg md:text-xl' : 'min-h-[3.5rem]'}`}>
+                <h3 className={`mb-3 ${index === SERVICES.length - 1 ? 'text-lg md:text-xl' : 'min-h-[3.5rem]'}`}>
                   {service.title}
                 </h3>
                 <p className="flex-1">
