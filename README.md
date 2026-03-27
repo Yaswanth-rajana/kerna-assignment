@@ -47,3 +47,66 @@ First, install dependencies:
 npm install
 # or
 yarn install
+
+Run the development server:
+
+bash
+npm run dev
+# or
+yarn dev
+Open http://localhost:3000 with your browser to see the result.
+
+Building for Production
+Create an optimized production build:
+
+bash
+npm run build
+Start the production server locally:
+
+bash
+npm run start
+Deployment
+This project is optimized for deployment on the Vercel Platform from the creators of Next.js.
+
+The easiest way to deploy is:
+
+Push your code to a GitHub repository.
+
+Import the repository into Vercel.
+
+Vercel will automatically detect Next.js and deploy.
+
+Your live site is available at: https://kerna-website.vercel.app
+
+Deployment Details
+Framework Preset: Next.js (default)
+
+Build Command: next build
+
+Output Directory: .next
+
+Node.js Server: Supports all Next.js features (server-side rendering, API routes, etc.)
+
+Project Structure
+text
+src/
+├── app/               # App Router pages and layouts
+├── components/        # Reusable UI components and sections
+├── hooks/             # Custom React hooks (useTheme)
+├── lib/               # Constants and data (services, steps, roles)
+└── styles/            # Global CSS and Tailwind imports
+Known Limitations
+Form Submission: No backend — the form simulates a successful submission without sending data.
+
+Placeholder Content: Project previews use sample data (not real client work).
+
+Google Maps: Maps load via an external iframe.
+
+Social Links: Instagram and LinkedIn placeholders are non-functional (#).
+
+License
+This project was created for the Kerna Frontend Internship Assignment.
+
+text
+
+This README is now tailored to your project, explains the technical decisions (especially the theme system), and provides clear instructions for both local development and deployment.
