@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kerna — Marketing Website
+
+A multi-page marketing website for Kerna, a PR & marketing agency focused on small businesses. Built as a frontend internship assignment.
+
+## Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Styling:** Tailwind CSS
+- **Language:** TypeScript
+- **Icons:** Lucide React
+- **Animations:** CSS transitions + Framer Motion
+- **Deployment:** Vercel (Node.js server)
+
+## Features
+
+- **4 Pages:** Home, Work, Careers, Contact/Apply
+- **Dark/Light Theme:** System preference detection, manual toggle, and localStorage persistence (no flash of wrong theme)
+- **Fully Responsive:** Mobile, tablet, and desktop layouts with a hamburger menu
+- **Form Validation:** Client-side validation with inline errors, loading state, and success feedback
+- **Google Maps Integration:** Embedded responsive map on Home and Contact pages
+- **Micro-interactions:** Hover effects (scale, shadow, border glow), active state scaling, and smooth scroll-to-top button
+- **Accessibility:** WCAG AA compliant colors and focus-visible styles for keyboard navigation
+
+## Pages
+
+| Page | Route | Description |
+|------|-------|-------------|
+| Home | `/` | Hero, About, 7 Services, 4 Steps, 5 Reasons, Work Preview, Careers Preview, Contact with Map |
+| Work | `/work` | 3 sample projects with industry tags and Problem → Solution summaries |
+| Careers | `/careers` | 3 internship roles with skills, 12-week duration, and Apply Now buttons |
+| Contact / Apply | `/contact` | Application form (Full Name, Email, Role dropdown, Portfolio, Message) with validation |
+
+## Theme Logic
+
+The website implements automatic light/dark theme handling:
+
+1. **System Preference:** On first visit, `prefers-color-scheme` media query determines the initial theme.
+2. **Anti-flash Script:** An inline script in `layout.tsx` applies the correct theme class before React hydration, preventing a flash of the wrong theme.
+3. **Manual Toggle:** A sun/moon icon in the header switches themes instantly.
+4. **Persistence:** User preference is saved in `localStorage` and takes priority on subsequent visits.
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
 
 ```bash
-npm run dev
+npm install
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+yarn install
