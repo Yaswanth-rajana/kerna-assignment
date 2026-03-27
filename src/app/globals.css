@@ -1,26 +1,169 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Load JS config for v4 compatibility (colors, fonts etc) */
+@config "../../tailwind.config.ts";
+
+/* =============================================
+   Tailwind v4: Dark mode via class on <html>
+   ============================================= */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =============================================
+   Tailwind v4: Custom design tokens via @theme
+   ============================================= */
+@theme {
+  /* Ultra-Nitpick Color System: Depth Hierarchy */
+  --color-main: #f8fafc;
+  --color-section-bg: #f1f5f4;
+  --color-card: #ffffff;
+  --color-border-premium: #e6eceb;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-accent: #14B8A6;
+
+  /* Charcoal/Dark palette */
+  --color-dark-bg: #0a0a0a;
+  --color-dark-card: #111111;
+  --color-dark-border: rgba(255, 255, 255, 0.06);
+  --color-dark-text: #f8fafc;
+  --color-dark-muted: #94A3B8; /* text-gray-400 equivalent */
+  --color-dark-dim: #64748B;   /* text-gray-500 equivalent */
+
+  /* Teal palette */
+  --color-teal-500: #14B8A6;
+  --color-teal-600: #0D9488;
+  --color-teal-700: #0f766e;
+
+  /* Font family */
+  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* =============================================
+   Base & Global Styles
+   ============================================= */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-main);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+  background-color: var(--color-dark-bg);
+  color: var(--color-dark-text);
+}
+
+/* =============================================
+   Typography Scale
+   ============================================= */
+h1 { @apply text-5xl md:text-7xl font-bold tracking-tight italic; }
+h2 { @apply text-3xl md:text-5xl font-bold tracking-tight; }
+h3 { @apply text-xl md:text-2xl font-bold; }
+p { @apply text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-medium; }
+
+/* =============================================
+   Strict Spacing & Grid
+   ============================================= */
+.section-padding {
+  @apply py-20 md:py-32;
+}
+
+/* =============================================
+   Premium Component Classes
+   ============================================= */
+
+/* Universal Card System */
+.kerna-card {
+  @apply relative rounded-2xl border transition-all duration-300 overflow-hidden;
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.dark .kerna-card {
+  background-color: #0f172a;
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.kerna-card:hover {
+  @apply -translate-y-2;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  border-color: #14B8A6;
+}
+
+.dark .kerna-card:hover {
+  border-color: #14B8A6;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(20, 184, 166, 0.1);
+}
+
+/* Premium Button System */
+.btn {
+  @apply inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold transition-all duration-300 active:scale-95 normal-case tracking-widest text-xs;
+}
+
+.btn-primary {
+  @apply bg-teal-500 text-white hover:bg-teal-600 hover:shadow-[0_10px_30px_rgba(20,184,166,0.3)] shadow-lg shadow-teal-500/10;
+}
+
+.btn-secondary {
+  @apply border-2 border-teal-500/30 text-teal-600 dark:text-teal-400 hover:bg-teal-500/5 hover:border-teal-500;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Map & Layout Polish */
+.map-premium {
+  @apply rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 shadow-2xl;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.kerna-input {
+  @apply w-full px-4 py-3 rounded-xl border transition-all duration-300 outline-none;
+  background-color: #ffffff;
+  border-color: #e6eceb;
+  color: var(--color-text-primary);
+}
+
+.dark .kerna-input {
+  background-color: var(--color-dark-card);
+  border-color: var(--color-dark-border);
+  color: var(--color-dark-text);
+}
+
+.kerna-input:focus {
+  @apply border-teal-500 ring-2 ring-teal-500/20;
+}
+
+.glass-nav {
+  @apply sticky top-0 z-50 transition-all duration-300;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.dark .glass-nav {
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
